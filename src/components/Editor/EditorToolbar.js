@@ -77,11 +77,11 @@ export default class EditorToolbar extends React.Component {
 
     return (
       <div>
-        <button onClick={() => hasChanged && onPersist()}>Save</button>
+        <button className="LightBlue" onClick={() => hasChanged && onPersist()}>Save</button>
         {
           isNewEntry
             ? null
-            : <button onClick={hasUnpublishedChanges ? onDeleteUnpublishedChanges : onDelete}>
+            : <button className="LightRed" onClick={hasUnpublishedChanges ? onDeleteUnpublishedChanges : onDelete}>
                 {deleteLabel}
               </button>
         }

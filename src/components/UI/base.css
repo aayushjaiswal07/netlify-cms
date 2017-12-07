@@ -122,7 +122,13 @@
     border-radius: var(--borderRadius);
     cursor: pointer;
 
-    &:focus {
+    font-weight: 500;
+    color: var(--colorButtonText);
+
+    &:focus,
+    &:hover {
+      color: white;
+      background-color: #555a65;
       outline: none;
     }
   }
@@ -130,16 +136,8 @@
   --buttonDefault {
     height: 36px;
     line-height: 36px;
-    font-weight: 500;
 
     padding: 0 15px;
-    color: var(--colorButtonText);
-
-    &:focus,
-    &:hover {
-      color: white;
-      background-color: #555a65;
-    }
   }
 
   --buttonMedium {
@@ -150,6 +148,31 @@
   --buttonSmall {
     height: 23px;
     line-height: 23px;
+  }
+
+  --buttonGreen {
+    background-color: #AAE31F;
+    color: #005614;
+  }
+
+  --buttonLightRed {
+    background-color: #FCEFEA;
+    color: #FF003B;
+  }
+
+  --buttonLightBlue {
+    background-color: #E8F5FE;
+    color: #3A69C7;
+  }
+
+  --buttonLightTeal {
+    background-color: #DDF5F9;
+    color: #1195AA;
+  }
+
+  --buttonTeal {
+    background-color: #17A2B8;
+    color: white;
   }
 
   --textBadge: {
@@ -260,6 +283,26 @@ a {
 
 button {
   @apply(--button);
+
+  &.LightBlue {
+    @apply(--buttonLightBlue);
+  }
+
+  &.Teal {
+    @apply(--buttonTeal);
+  }
+
+  &.LightTeal {
+    @apply(--buttonLightTeal);
+  }
+
+  &.LightRed {
+    @apply(--buttonLightRed);
+  }
+
+  &.Green {
+    @apply(--buttonGreen);
+  }
 }
 
 img {
