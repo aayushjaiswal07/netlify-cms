@@ -33,12 +33,15 @@
   --colorBlueLight: #e8f5fe;
   --colorGreen: #005614;
   --colorGreenLight: #caef6f;
+  --colorGreenBright: #28a745;
   --colorBrown: #754e00;
   --colorYellow: #ffee9c;
+  --colorGold: #fad410;
   --colorRed: #ff003b;
   --colorRedLight: #fcefea;
   --colorPurple: #70399f;
   --colorPurpleLight: #f6d8ff;
+  --colorPurpleBright: #9166be;
   --colorTeal: #17a2b8;
   --colorTealLight: #ddf5f9;
 
@@ -103,10 +106,13 @@
   }
 
   --caretDown: {
-    width: 9px;
-    height: 6px;
-
-    content: url("data:image/svg+xml; utf8, <svg xmlns='http://www.w3.org/2000/svg' width='9' height='6'><path fill='#FFF' fill-rule='evenodd' d='M4.1 5.467L.6.8A.5.5 0 0 1 1 0h7a.5.5 0 0 1 .4.8L4.9 5.467a.5.5 0 0 1-.8 0z'/></svg>");
+    color: #fff;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid currentColor;
+    border-radius: 2px;
   }
 
   --card: {
@@ -116,6 +122,8 @@
   }
 
   --button: {
+    color: var(--colorButtonText);
+    background-color: var(--colorButton);
     border: 0;
     border-radius: var(--borderRadius);
     cursor: pointer;
@@ -128,64 +136,19 @@
   }
 
   --buttonDefault {
-    height: 36px;
     line-height: 36px;
-
     font-weight: 500;
 
     padding: 0 15px;
+    color: var(--colorButtonText);
   }
 
   --buttonMedium {
-    height: 27px;
     line-height: 27px;
-
-    font-size: 12px;
-    font-weight: 600;
-
-    border-radius: 3px;
-    padding: 0 24px 0 14px;
   }
 
   --buttonSmall {
-    height: 23px;
     line-height: 23px;
-  }
-
-  --buttonGray {
-    background-color: var(--colorButton);
-    color: var(--colorButtonText);
-
-    &:focus,
-    &:hover {
-      color: white;
-      background-color: #555a65;
-    }
-  }
-
-  --buttonGreen {
-    background-color: #AAE31F;
-    color: #005614;
-  }
-
-  --buttonLightRed {
-    background-color: #FCEFEA;
-    color: #FF003B;
-  }
-
-  --buttonLightBlue {
-    background-color: #E8F5FE;
-    color: #3A69C7;
-  }
-
-  --buttonLightTeal {
-    background-color: #DDF5F9;
-    color: #1195AA;
-  }
-
-  --buttonTeal {
-    background-color: #17A2B8;
-    color: white;
   }
 
   --textBadge: {
@@ -296,26 +259,6 @@ a {
 
 button {
   @apply(--button);
-
-  &.LightBlue {
-    @apply(--buttonLightBlue);
-  }
-
-  &.Teal {
-    @apply(--buttonTeal);
-  }
-
-  &.LightTeal {
-    @apply(--buttonLightTeal);
-  }
-
-  &.LightRed {
-    @apply(--buttonLightRed);
-  }
-
-  &.Green {
-    @apply(--buttonGreen);
-  }
 }
 
 img {

@@ -18,6 +18,7 @@ export default class EditorToolbar extends React.Component {
     onDeleteUnpublishedChanges: PropTypes.func.isRequired,
     onChangeStatus: PropTypes.func.isRequired,
     onPublish: PropTypes.func.isRequired,
+    onPublishAndNew: PropTypes.func.isRequired,
     user: ImmutablePropTypes.map,
     hasChanged: PropTypes.bool,
     displayUrl: PropTypes.string,
@@ -75,18 +76,21 @@ export default class EditorToolbar extends React.Component {
       || (hasUnpublishedChanges && isNewEntry && 'Delete unpublished entry')
       || (!hasUnpublishedChanges && !isModification && 'Delete published entry');
 
-    return (
-      <div>
-        <button className="LightBlue" onClick={() => hasChanged && onPersist()}>Save</button>
-        {
-          isNewEntry
-            ? null
-            : <button className="LightRed" onClick={hasUnpublishedChanges ? onDeleteUnpublishedChanges : onDelete}>
+    return [
+        <button
+          className="nc-entryEditor-toolbar-saveButton"
+          onClick={() => hasChanged && onPersist()}
+        >
+          Save
+        </button>,
+        isNewEntry || !deleteLabel ? null
+            : <button
+                className="nc-entryEditor-toolbar-deleteButton"
+                onClick={hasUnpublishedChanges ? onDeleteUnpublishedChanges : onDelete}
+              >
                 {deleteLabel}
-              </button>
-        }
-      </div>
-    );
+              </button>,
+    ];
   };
 
   renderWorkflowPublishControls = () => {
@@ -96,33 +100,35 @@ export default class EditorToolbar extends React.Component {
       isPersisting,
       onChangeStatus,
       onPublish,
+      onPublishAndNew,
       currentStatus,
       isNewEntry,
     } = this.props;
     if (currentStatus) {
       return [
         <Dropdown
-          className="nc-entryEditor-toolbar-button"
+          className="nc-entryEditor-toolbar-dropdown"
+          classNameButton="nc-entryEditor-toolbar-statusButton"
           dropdownTopOverlap="40px"
-          dropdownWidth="150px"
+          dropdownWidth="120px"
           label={isPersisting ? 'Updating...' : 'Set status'}
         >
           <DropdownItem
-            className={c({
+            className={c('nc-entryEditor-toolbar-statusMenu-statusDraft', {
               'nc-entryEditor-toolbar-statusMenu-statusActive': currentStatus === status.get('DRAFT'),
             })}
             label="Draft"
             onClick={() => onChangeStatus('DRAFT')}
           />
           <DropdownItem
-            className={c({
+            className={c('nc-entryEditor-toolbar-statusMenu-statusReview', {
               'nc-entryEditor-toolbar-statusMenu-statusActive': currentStatus === status.get('PENDING_REVIEW'),
             })}
             label="In review"
             onClick={() => onChangeStatus('PENDING_REVIEW')}
           />
           <DropdownItem
-            className={c({
+            className={c('nc-entryEditor-toolbar-statusMenu-statusReady', {
               'nc-entryEditor-toolbar-statusMenu-statusActive': currentStatus === status.get('PENDING_PUBLISH'),
             })}
             label="Ready"
@@ -130,19 +136,20 @@ export default class EditorToolbar extends React.Component {
           />
         </Dropdown>,
         <Dropdown
-          className="nc-entryEditor-toolbar-button"
+          className="nc-entryEditor-toolbar-dropdown"
+          classNameButton="nc-entryEditor-toolbar-publishButton"
           dropdownTopOverlap="40px"
           dropdownWidth="150px"
           label={isPersisting ? 'Publishing...' : 'Publish'}
         >
           <DropdownItem label="Publish now" icon="arrow" iconDirection="right" onClick={onPublish}/>
-          <DropdownItem label="Publish and create new" icon="add" onClick={onPersistAndNew}/>
+          <DropdownItem label="Publish and create new" icon="add" onClick={onPublishAndNew}/>
         </Dropdown>
       ];
     }
 
     if (!isNewEntry) {
-      return 'Published';
+      return <div className="nc-entryEditor-toolbar-statusPublished">Published</div>;
     }
   };
 
