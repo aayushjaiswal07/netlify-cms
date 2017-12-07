@@ -251,20 +251,14 @@ class MediaLibrary extends React.Component {
           <button className="nc-mediaLibrary-close" onClick={this.handleClose}>
             <svg xmlns="http://www.w3.org/2000/svg" width="11" height="12"><path fill="#313D3E" fill-rule="evenodd" d="M1.407 0h.402c1.535.662 2.405 2.39 3.675 3.478C6.764 2.475 7.636.714 9.131 0h.41c1.046.213 1.897 1.611 1.203 2.667-.899 1.174-2.004 2.166-2.942 3.319.938 1.248 2.179 2.209 3.04 3.521.694 1.376-1.046 3.158-2.25 2.24-1.123-.96-2.012-2.23-3.108-3.233-1.056 1.025-1.965 2.23-3.04 3.213-.968.756-2.248-.182-2.444-1.313v-.448c.655-1.633 2.258-2.583 3.187-3.98C2.189 4.599.605 3.66 0 1.985v-.449C.186.8.733.203 1.407 0"/></svg>
           </button>
-
           { !canInsert ? null :
-            <h1 className="nc-mediaLibrary-title">
             <button onClick={this.handleInsert} disabled={!hasSelection} >
               Insert
             </button>
-
           }
           <h1 className="nc-mediaLibrary-title">
-              label="Upload"
             {privateUpload ? 'Private ' : null}
-              onChange={this.handlePersist}
             {forImage ? 'Images' : 'Media assets'}
-            />
           </h1>
         </div>
 
@@ -289,12 +283,10 @@ class MediaLibrary extends React.Component {
               </button>
               <FileUploadButton
                 className={`nc-mediaLibrary-uploadButton ${shouldShowButtonLoader ? 'nc-mediaLibrary-uploadButton-disabled' : ''}`}
-              onClick={this.handleDelete}
                 label="Upload"
                 imagesOnly={forImage}
                 onChange={this.handlePersist}
                 disabled={shouldShowButtonLoader}
-
               />
           </div>
         </div>
