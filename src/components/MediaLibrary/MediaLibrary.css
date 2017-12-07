@@ -39,6 +39,22 @@
 }
 
 .nc-mediaLibrary-header {
+  & button.nc-mediaLibrary-close {
+    display: flex;
+    position: relative;
+    left: -40px;
+    top: -40px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: white;
+    @apply(--dropShadowMiddle);
+    content: "";
+    padding: 14px;
+    margin-right: -40px;
+
+    float: left;
+  }
 }
 
 .nc-mediaLibrary-actions {
